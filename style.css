@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+    text-align: center;
+    font-family: sans-serif;
+    color: #bbb;
+    position: relative;
+    min-height: 100vh;
+}
+
+.matches {
+    border-bottom: 1px dotted #bbb;
+    padding: 1rem;
+}
+
+.matches:last-child {
+    border: none;
+}
+
+.game {
+    background-color: #fff;
+    border-radius: .5rem;
+    padding: 1rem;
+}
+
+.game,
+#qrtrFinal,
+#semiFinal {
+    display: grid;
+    grid-template-columns: repeat(2, calc(50% - .25rem));
+    gap: .5rem;
+}
+
+.game .date,
+#qrtrFinal p,
+#semiFinal p {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#bronzeFinal .game,
+#goldFinal .game {
+    width: calc(50% - .25rem);
+    margin: .5rem auto 0;
+}
+
+.team1 {
+    text-align: right;
+    position: relative;
+}
+
+.team1::after {
+    content: ":";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: .5rem;
+    text-align: center;
+}
+
+.team2 {
+    text-align: left;
+}
+
+.score {
+    font-size: 1rem;
+    line-height: 1rem;
+    height: 1rem;
+}
+
+.name {
+    margin-top: .5rem;
+    text-transform: lowercase;
+}
+
+#start {
+    margin: 1rem;
+    padding: .5rem;
+    font-size: 1.5rem;
+    background-color: green;
+    color: #fff;
+    border: none;
+}
+
+.date {
+    font-style: italic;
+}
+
+.today {
+    color: #000;
+}
+
+.game:focus {
+    color: #000;
+    font-weight: bold;
+}
+
+.matches:focus-within p {
+    color: #000;
+    font-weight: bold;
+}
+
+.game:focus .date::before,
+.game:focus .date::after {
+    content: '⚽️';
+    margin: 0 1rem;
+}
+
+.game:focus .name {
+    text-transform: uppercase;
+}
+
+.team1.win .score::before,
+.team2.win .score::after {
+    content: '⭐️';
+    margin: 0 1rem;
+}
+
+#bG .team1.win .score::before,
+#bG .team2.win .score::after {
+    content: '🥉';
+}
+
+#gG .team1.win .score::before,
+#gG .team2.win .score::after {
+    content: '🏆🥇';
+}
+
+#gG .team1.loose .score::before,
+#gG .team2.loose .score::after {
+    content: '🥈';
+    margin: 0 1rem;
+}
+
+.result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+    background-color: #fff;
+    padding: 3rem;
+}
+
+.result h3 {
+    margin: 2rem 0;
+    color: #000;
+}
+
+.ok {
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: green;
+    color: #fff;
+}
+
+.ok:hover {
+    background-color: darkgreen;
+}
+
+@media (min-width:760px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        align-items: center;
+        max-width: 1200px;
+        margin: auto;
+    }
+    #qrtrFinal,
+    #semiFinal {
+        display: block;
+    }
+    .matches {
+        border-bottom: none;
+        position: relative;
+    }
+    #bronzeFinal .game,
+    #goldFinal .game {
+        width: 100%;
+    }
+    #qrtrFinal .game:nth-child(3) {
+        margin-bottom: 4rem;
+    }
+    #semiFinal .game:nth-child(2) {
+        margin-bottom: 11.25rem;
+    }
+    .game {
+        margin: 1rem 0;
+    }
+    .matches::after,
+    .matches::before {
+        position: absolute;
+        top: 0;
+        width: 17px;
+    }
+    .matches::before {
+        left: 0;
+    }
+    .matches::after {
+        left: 100%;
+        transform: translate(-16px, 100px);
+    }
+    #qrtrFinal::after {
+        content: url(img/Asset\ 1.svg);
+    }
+    #semiFinal::before {
+        content: url(img/Asset\ 2.svg);
+        transform: translate(-1px, 58px);
+    }
+    #semiFinal::after {
+        content: url(img/Asset\ 3.svg);
+    }
+    #bronzeFinal::before {
+        content: url(img/Asset\ 4.svg);
+        transform: translate(-1px, -35px);
+    }
+    #bronzeFinal::after {
+        content: url(img/Asset\ 5.svg);
+        width: 32px;
+        top: -24px;
+    }
+}
