@@ -26,6 +26,7 @@ body {
     background-color: #fff;
     border-radius: .5rem;
     padding: 1rem;
+    min-height: 108px;
 }
 
 .game,
@@ -95,23 +96,23 @@ body {
     color: #000;
 }
 
-.game:focus {
+.game.active {
     color: #000;
     font-weight: bold;
 }
 
-.matches:focus-within p {
+.matches.active>p {
     color: #000;
     font-weight: bold;
 }
 
-.game:focus .date::before,
-.game:focus .date::after {
+.game.active .date::before,
+.game.active .date::after {
     content: '⚽️';
     margin: 0 1rem;
 }
 
-.game:focus .name {
+.game.active .name {
     text-transform: uppercase;
 }
 

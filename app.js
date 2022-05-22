@@ -102,14 +102,40 @@ const timetable = {
     medal: []
 };
 const simulate = () => {
+    const yesterday = today.textContent;
     addDay();
     today.textContent = day;
-    games.forEach(g => {
-        if (g.querySelector(".date").textContent == today.textContent) {
-            g.focus();
-            match(g);
+    timetable.quarter.forEach(d => {
+        if (d == day) {
+            document.querySelector('#qrtrFinal').classList.add('active');
+            document.querySelector('#semiFinal').classList.remove('active');
+            document.querySelector('#bronzeFinal').classList.remove('active');
+            document.querySelector('#goldFinal').classList.remove('active');
         };
     });
+    timetable.semi.forEach(d => {
+        if (d == day) {
+            document.querySelector('#qrtrFinal').classList.remove('active');
+            document.querySelector('#semiFinal').classList.add('active');
+            document.querySelector('#bronzeFinal').classList.remove('active');
+            document.querySelector('#goldFinal').classList.remove('active');
+        };
+    });
+    if (timetable.medal[0] == day) {
+        document.querySelector('#qrtrFinal').classList.remove('active');
+        document.querySelector('#semiFinal').classList.remove('active');
+        document.querySelector('#bronzeFinal').classList.add('active');
+        document.querySelector('#goldFinal').classList.remove('active');
+    }
+    if (timetable.medal[1] == day) {
+        document.querySelector('#qrtrFinal').classList.remove('active');
+        document.querySelector('#semiFinal').classList.remove('active');
+        document.querySelector('#bronzeFinal').classList.remove('active');
+        document.querySelector('#goldFinal').classList.add('active');
+    }
+    games.forEach(g => { if (g.classList.contains('active')) g.classList.remove('active') });
+    games.forEach(g => { if (g.querySelector(".date").textContent == today.textContent) g.classList.add('active') });
+    games.forEach(g => { if (g.querySelector(".date").textContent == yesterday) match(g) });
     if (today.textContent == timetable.medal[2]) {
         clearInterval(play);
         const result = document.createElement('div');
